@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Salary Calculator</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script>
+
+
+		function calculate(){
+
+			let usdcad = getInputAsNumber('usdcad');
+			let benifits = getInputAsNumber('benifits');
+			let prevSalary = getInputAsNumber('prevSalary');
+
+			let out = (prevSalary + benifits * 12) * usdcad;
+			setInputValue('output', currencyFormat(out));
+
+
+
+
+		}
+
+		function getInputAsNumber(id){
+			return Number(document.getElementById(id).value);
+		}
+
+		function setInputValue(id, val){
+			let elm = document.getElementById(id).value = val;
+		}
+
+		function currencyFormat(num) {
+		  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+		}
+	</script>
+
+</head>
+<body>
+
+
+
+
+<div class="form-group">
+
+    <input class="form-field" id="usdcad" type="text" placeholder="0.76" value="0.76" onchange="calculate()" onkeyup="calculate()">
+    <span>USD to CAD exchange rate</span>
+</div>
+
+<div class="form-group">
+
+    <input class="form-field" id="benifits" type="text" placeholder="CAD" value="160" onchange="calculate()"  onkeyup="calculate()">
+    <span>Monthly Health Plan CAD</span>
+</div>
+
+<div class="form-group">
+    <input class="form-field" id="prevSalary" type="text" placeholder="115000" value="115000" onchange="calculate()" onkeyup="calculate()">
+    <span>Previous Annual Salary CAD</span>
+</div>
+
+<div class="form-group">
+    <input class="form-field" id="output" type="text" value="$88,859.20" placeholder="salary" disabled="">
+    
+	<span class="outputspan">Salary in USD</span>
+</div>
+
+</body>
+</html>
